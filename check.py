@@ -318,8 +318,7 @@ class HealthCheckInHelper(ZJULogin):
             return response.json()
 
     def Push(self,res):
-        print("开始钉钉推送：" + res)
-        if not res:
+        if res:
             if self.CHAT_ID and self.TG_TOKEN :
                 post_tg('浙江大学每日健康打卡 V3.0 '+ f" \n\n 签到结果:{res}", self.CHAT_ID, self.TG_TOKEN) 
             else:
@@ -344,7 +343,7 @@ class HealthCheckInHelper(ZJULogin):
             # print(location)
             location = {'info': 'LOCATE_SUCCESS', 'status': 1, 'lng': self.lng, 'lat': self.lat}
             geo_info = self.get_geo_info(location)
-            print(geo_info)
+            # print(geo_info)
             res = self.take_in(geo_info)
             print(res)
             self.Push(res)
